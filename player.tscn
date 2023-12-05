@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://bypb25mu5ukil"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_cwtdt"]
+[ext_resource type="Script" path="res://PlayerCamera.gd" id="2_ajctm"]
+[ext_resource type="Script" path="res://PlayerAim.gd" id="3_s8sac"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pa14f"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_8nw8w"]
+
+[node name="Player" type="CharacterBody3D" groups=["player"]]
+collision_mask = 7
+script = ExtResource("1_cwtdt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_pa14f")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="."]
+spring_length = 3.0
+script = ExtResource("2_ajctm")
+
+[node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
+current = true
+
+[node name="RayCast3D" type="RayCast3D" parent="SpringArm3D/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.12405)
+target_position = Vector3(0, 0, -10)
+collision_mask = 6
+hit_back_faces = false
+script = ExtResource("3_s8sac")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_8nw8w")
