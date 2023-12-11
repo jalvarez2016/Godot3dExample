@@ -15,19 +15,17 @@ script = ExtResource("1_cwtdt")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_pa14f")
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_8nw8w")
+
+[node name="Marker3D" type="Marker3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.27678)
+
 [node name="SpringArm3D" type="SpringArm3D" parent="."]
 spring_length = 3.0
+margin = 0.2
 script = ExtResource("2_ajctm")
 
 [node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
 current = true
-
-[node name="RayCast3D" type="RayCast3D" parent="SpringArm3D/Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.12405)
-target_position = Vector3(0, 0, -10)
-collision_mask = 6
-hit_back_faces = false
 script = ExtResource("3_s8sac")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("CapsuleMesh_8nw8w")

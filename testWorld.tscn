@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6qu32476mu0w"]
+
+[ext_resource type="PackedScene" uid="uid://c0ubkdrf2bmx3" path="res://node_3d.tscn" id="1_eqnvp"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_5iwke"]
+size = Vector2(20, 20)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_efa7d"]
+data = PackedVector3Array(10, 0, 10, -10, 0, 10, 10, 0, -10, -10, 0, 10, -10, 0, -10, 10, 0, -10)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Node3D" parent="." instance=ExtResource("1_eqnvp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.406164, 0.474252, -0.265165)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+mesh = SubResource("PlaneMesh_5iwke")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_efa7d")

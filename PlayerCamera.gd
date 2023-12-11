@@ -13,7 +13,6 @@ func _unhandled_input(event: InputEvent):
 		rotation.y -= event.relative.x * mouse_sensetivity
 		rotation.y = wrapf(rotation.y, -PI, PI)
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	
