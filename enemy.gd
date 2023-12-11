@@ -4,7 +4,7 @@ const SPEED = 10.0
 var player_detected = false
 var player = null
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if player_detected:
 		var move_direction = (player.global_position - global_position).normalized();
 		apply_force(move_direction * SPEED)

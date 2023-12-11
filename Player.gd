@@ -5,7 +5,7 @@ extends CharacterBody3D
 @export var jump_force := 20.0
 
 @onready var spring_arm: SpringArm3D = $SpringArm3D
-@onready var mesh : MeshInstance3D = $MeshInstance3D
+@onready var mesh : Node3D = $GDbotSkin
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -24,12 +24,14 @@ func _process(delta: float):
 	var input_dir = Input.get_vector("left", "right", "forward", "back")
 	var move_direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	move_direction = move_direction.rotated(Vector3.UP, spring_arm.rotation.y).normalized()
-	mesh.look_at($MeshInstance3D/Marker3D.global_position + Vector3(velocity.x, 0, velocity.z), Vector3.UP)
+	mesh.look_at($GDbotSkin/Marker3D.global_position + Vector3(velocity.x, 0, velocity.z), Vector3.UP)
 	
 	if move_direction:
+		mesh.walk()
 		velocity.x = move_direction.x * speed
 		velocity.z = move_direction.z * speed
 	else:
+		mesh.idle()
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)
 	
