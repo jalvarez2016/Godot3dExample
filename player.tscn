@@ -19,7 +19,7 @@ shape = SubResource("CapsuleShape3D_pa14f")
 mesh = SubResource("CapsuleMesh_8nw8w")
 
 [node name="Marker3D" type="Marker3D" parent="MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.27678)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.72322)
 
 [node name="SpringArm3D" type="SpringArm3D" parent="."]
 spring_length = 3.0
