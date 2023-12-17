@@ -11,7 +11,6 @@ func _ready():
 func _process(_delta):
 	var root = get_tree().get_root().get_node("World")
 	if Input.is_action_just_pressed("shoot"):
-		print("shoot")
 		var object_instance = object_class.instantiate()
 		object_instance.position = shoot_position.global_position
 		object_instance.rotation.y = $"../../MeshInstance3D".rotation.y

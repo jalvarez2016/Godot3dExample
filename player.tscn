@@ -6,7 +6,7 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pa14f"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_8nw8w"]
+[sub_resource type="BoxMesh" id="BoxMesh_4edsr"]
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 collision_mask = 7
@@ -16,7 +16,7 @@ script = ExtResource("1_cwtdt")
 shape = SubResource("CapsuleShape3D_pa14f")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("CapsuleMesh_8nw8w")
+mesh = SubResource("BoxMesh_4edsr")
 
 [node name="Marker3D" type="Marker3D" parent="MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.72322)
@@ -29,3 +29,31 @@ script = ExtResource("2_ajctm")
 [node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
 current = true
 script = ExtResource("3_s8sac")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CapsuleShape3D_pa14f")
+
+[node name="GameOverScreen" type="Panel" parent="."]
+visible = false
+offset_right = 1152.0
+offset_bottom = 640.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="GameOverScreen"]
+layout_mode = 0
+offset_left = 528.0
+offset_top = 320.0
+offset_right = 624.0
+offset_bottom = 344.0
+text = "GAME OVER"
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = 35.0
+offset_top = 33.0
+offset_right = 382.0
+offset_bottom = 60.0
+step = 10.0
+value = 100.0
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

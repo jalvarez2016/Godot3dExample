@@ -1,7 +1,6 @@
 extends RigidBody3D
 
-var speed := 10.0
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	position += global_transform.basis.z * speed * delta;
-	pass
+@export var initialForce = 100.00
+
+func _ready():
+	apply_central_impulse(global_transform.basis.z * initialForce)
